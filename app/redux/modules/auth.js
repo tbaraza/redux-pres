@@ -15,10 +15,11 @@ export function authUser(user) {
 export default function reducer(state = DEFAULT_STATE, action = {}) {
     switch (action.type) {
     case types.SIGNUP_REQUEST_SUCCESS:
-        return Object.assign({}, state, {
-         email: action.payload.email,
-         password: action.payload.password
-      });
+        return {
+            ...state,
+            email: action.payload.email,
+            password: action.payload.password,
+        };
 
     default:
         return state;
