@@ -52,7 +52,7 @@ export default class SignUp extends Component {
                 />
             </form>
             <button onClick={this.handleSubmit}>submit</button>
-            <h1>Current state is {this.state.email + ' and ' + this.state.password}</h1>
+            {/*<h1>Current state is {this.props.state.auth.email + ' and ' + this.props.state.auth.password}</h1>*/}
           </div>
         );
     }
