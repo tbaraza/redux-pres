@@ -5,10 +5,11 @@ const DEFAULT_STATE = {
     password: '',
 };
 
+
 export function authUser(user) {
     return {
         type: types.SIGNUP_REQUEST_SUCCESS,
-        payload: user
+        payload: user,
     };
 }
 
