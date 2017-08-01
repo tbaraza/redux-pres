@@ -5,9 +5,39 @@
         "es6": true
     },
     "extends": "airbnb",
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
     "rules": {
-        "comma-dangle": 0,
-        "indent": ["error", 4],
+        "indent": [
+            "error",
+            4
+        ],
+        "comma-dangle": [
+            "error",
+            { "objects": "always-multiline" }  
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-underscore-dangle": 0,
         "react/jsx-filename-extension": 0
     }
 }
