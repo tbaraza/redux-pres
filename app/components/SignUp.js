@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { authUser } from '../redux/modules/auth';
+import { Button, Col, Form, FormGroup, FormControl, Table } from 'react-bootstrap';
+import { signUp } from '../redux/modules/auth';
 import { increment, decrement } from '../redux/modules/count';
 import configureStore from '../redux/store/configureStore';
+import StarshipTable from './Table';
+import styles from './signUp.scss';
 
-const store = configureStore();
+const store = configureStore;
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -17,7 +20,7 @@ export default class SignUp extends Component {
 
     handleChange = (e) => {
         const newState = {};
-        newState[e.target.name] = e.target.value;
+        newState[e.target.id] = e.target.value;
         this.setState(newState);
     }
 
@@ -25,7 +28,7 @@ export default class SignUp extends Component {
         e.preventDefault();
         const email = this.state.email.trim();
         const password = this.state.password.trim();
-        store.dispatch(authUser({ email, password }));
+        store.dispatch(signUp(email, password));
     }
 
     handleIncrement = () => {
@@ -41,31 +44,59 @@ export default class SignUp extends Component {
     }
 
     render() {
+        const { state } = this.props;
+        const starships = state.auth.data.results || [];
         return (
-          <div>
-            <form onSubmit={this.handleSubmit}>
-              <input
-                type="text"
-                value={this.state.email}
-                onChange={this.handleChange}
-                name="email"
-                placeholder="Email"
-              />
-              <input
-                type="text"
-                value={this.state.password}
-                onChange={this.handleChange}
-                name="password"
-                placeholder="Password"
-              />
-            </form>
-            <button onClick={this.handleSubmit}>submit</button>
-            <h1>Current state:</h1>
-            <h2>{`Email is ${this.state.email} and password is ${this.state.password}`}</h2>
-            <div>
+          <div className={styles.body}>
+            <Form className={styles.form} onSubmit={this.handleSubmit}>
+              <FormGroup bsSize="small" controlId="email">
+                <Col sm={2}>Email</Col>
+                <Col sm={10}>
+                  <FormControl
+                    type="text"
+                    onChange={this.handleChange}
+                    placeholder="Email"
+                  />
+                </Col>
+              </FormGroup>
+
+              <FormGroup bsSize="small" controlId="password">
+                <Col sm={2}>Password</Col>
+                <Col sm={10}>
+                  <FormControl
+                    type="password"
+                    onChange={this.handleChange}
+                    placeholder="Password"
+                  />
+                </Col>
+              </FormGroup>
+              <FormGroup>
+                <Col smOffset={2} sm={10}>
+                  <Button type="submit" onClick={this.handleSubmit}>submit</Button>
+                </Col>
+              </FormGroup>
+            </Form>
+            <br />
+            <div className={styles.data}>
+              <h1>Current state:</h1>
+              <h2>{`Email is ${this.state.email} and password is ${this.state.password}`}</h2>
               <h1>Current number is: {this.state.number}</h1>
-              <button onClick={this.handleIncrement}>Increment</button>
-              <button onClick={this.handleDecrement}>Decrement</button>
+              <Button onClick={this.handleIncrement}>Increment</Button>
+              <Button onClick={this.handleDecrement}>Decrement</Button>
+            </div>
+            <div className={styles.table}>
+              <Table >
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>No. of passengers</th>
+                    <th>No. of crew</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {starships.map(starship => <StarshipTable starship={starship} />)}
+                </tbody>
+              </Table>
             </div>
           </div>
         );
