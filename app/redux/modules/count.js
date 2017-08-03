@@ -8,7 +8,7 @@ export function increment(number) {
     return {
         type: types.INCREMENT,
         payload: number,
-    }
+    };
 }
 
 export function decrement(number) {
