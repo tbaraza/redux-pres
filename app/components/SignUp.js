@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { Button, Col, Form, FormGroup, FormControl, Table } from 'react-bootstrap';
 import { signUp } from '../redux/modules/auth';
 import { increment, decrement } from '../redux/modules/count';
-import configureStore from '../redux/store/configureStore';
+import { store } from '../redux/store/configureStore';
 import StarshipTable from './Table';
 import styles from './signUp.scss';
-
-const store = configureStore;
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -94,7 +92,7 @@ export default class SignUp extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {starships.map(starship => <StarshipTable starship={starship} />)}
+                  {starships.map(starship => <StarshipTable key={starship.name}starship={starship} />)}
                 </tbody>
               </Table>
             </div>

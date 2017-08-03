@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SignUp from './components/SignUp';
-import configureStore from './redux/store/configureStore';
-
-const store = configureStore();
+import { store } from './redux/store/configureStore';
 
 const render = () => {
     ReactDOM.render(
