@@ -1,0 +1,25 @@
+.body {
+    background-color: #f2eaeb;
+    height: 100%;
+    padding-top: 5%;
+}
+
+.form {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+    .col-sm-10 > input {
+    margin-bottom: 3%;
+    } 
+}
+
+.data {
+    margin-top: 10%;
+    margin-left: 15%;
+}
+
+.table {
+    margin-top: 5%;
+    margin-left: 15%;
+}
