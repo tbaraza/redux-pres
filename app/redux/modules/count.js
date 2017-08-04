@@ -1,5 +1,6 @@
 import types from '../actionTypes';
 
+
 const DEFAULT_STATE = {
     number: 0,
 };
@@ -21,15 +22,10 @@ export function decrement(number) {
 export default function reducer(state = DEFAULT_STATE, action = {}) {
     switch (action.type) {
     case types.INCREMENT:
-        return {
-            ...state,
-            number: action.payload,
-        };
+        return state.set('number', action.payload);
+
     case types.DECREMENT:
-        return {
-            ...state,
-            number: action.payload,
-        };
+        return state.set('number', action.payload);
     default:
         return state;
 

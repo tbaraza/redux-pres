@@ -1,14 +1,18 @@
 import types from '../actionTypes';
 
+const { Map } = require('immutable');
+
 const DEFAULT_STATE = {
-    email: '',
-    password: '',
+    user: {
+        email: '',
+        password: '',
+    },
     data: {},
 };
 
 /* selector */
 export function getEmail(state) {
-    return state.auth.email;
+    return state.auth.user.email;
 }
 
 /* action creators */
@@ -29,22 +33,17 @@ export function signupRequestSuccess(user) {
 export default function reducer(state = DEFAULT_STATE, action = {}) {
     switch (action.type) {
     case types.SIGNUP_REQUEST_SUCCESS:
-        return {
-            ...state,
+        return state.set('user', Map({
             email: action.payload.email,
             password: action.payload.password,
-        };
+        }));
+
+
     case types.GET_STARSHIPS_SUCCESS:
-        return {
-            ...state,
-            data: action.payload.data,
-        };
+        return state.set('data', action.payload.data);
 
     case types.GET_STARSHIPS_FAIL:
-        return {
-            ...state,
-            errors: action.payload,
-        };
+        return state.set('errors', action.payload);
 
     default:
         return state;

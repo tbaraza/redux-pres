@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { Button, Col, Form, FormGroup, FormControl, Table } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import { signUp } from '../redux/modules/auth';
 import { increment, decrement } from '../redux/modules/count';
 import { store } from '../redux/store/configureStore';
 import StarshipTable from './Table';
 import styles from './signUp.scss';
 
+const immutable = require('immutable');
+
 export default class SignUp extends Component {
+    static propTypes = {
+        state: PropTypes.instanceOf(immutable.Map),
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -43,7 +49,8 @@ export default class SignUp extends Component {
 
     render() {
         const { state } = this.props;
-        const starships = state.auth.data.results || [];
+        const stateObject = state.toJS();
+        const starships = stateObject.auth.data.results || [];
         return (
           <div className={styles.body}>
             <Form className={styles.form} onSubmit={this.handleSubmit}>
