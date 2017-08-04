@@ -3,8 +3,10 @@ const { fromJS } = require('immutable');
 export default function getInitialData() {
     const initialData = {
         auth: {
-            email: '',
-            password: '',
+            user: {
+                email: '',
+                password: '',
+            },
             data: {},
         },
         count: {

@@ -20,7 +20,7 @@ const enhancer = compose(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-export const store = createStore(rootReducer, enhancer);
+export const store = createStore(rootReducer, initialState, enhancer);
 
 // then run the saga
 sagaMiddleware.run(getStarshipsSaga);
