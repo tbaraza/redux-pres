@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import auth from '../modules/auth';
 import count from '../modules/count';
 
