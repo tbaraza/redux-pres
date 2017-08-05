@@ -39,10 +39,12 @@ export default rootReducer;
 state tree
 {
     auth: {
-        email: '',
-        password: '',
+        user: {
+            email: '',
+            password: '',
+        },
+        data: {},
     },
-
     count: {
         number: 0,
     }
